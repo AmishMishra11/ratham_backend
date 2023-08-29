@@ -22,13 +22,13 @@ const getStudentSlots = async (req, res) => {
 
 const bookSlots = async (req, res) => {
   try {
-    const { studentID, studentName, sessionId } = req.body;
+    const { studentID, studentname, sessionId } = req.body;
 
     const session = await SessionModule.findById({ _id: sessionId });
 
     if (session) {
       const newSessionDetails = {
-        studentName,
+        studentname,
         studentID,
         status: "Booked",
       };
@@ -54,7 +54,8 @@ const bookSlots = async (req, res) => {
 
 const getDeanSlots = async (req, res) => {
   try {
-    const sessions = await SessionModule.find({});
+    const { deanID } = req.body;
+    const sessions = await SessionModule.find({ deanID });
 
     if ((await sessions).length) {
       const bookedSessions = sessions.filter(

@@ -17,7 +17,6 @@ const studentLogin = async (req, res) => {
 
     if (foundUser) {
       if (checkCorrectUser) {
-        console.log("here");
         const token = jwt.sign({ universityID }, process.env.TOKEN_SECRET);
 
         const bearerToken = "bearer " + token;
